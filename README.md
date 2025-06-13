@@ -23,7 +23,7 @@ Features:
 
 ---
 
-👉 **Live Demo (open in new tab):** [Phishing Awareness Simulator](https://phishaware-sim.netlify.app)
+👉 **Live Demo:** [Phishing Awareness Simulator](https://phishaware-sim.netlify.app)
 
 
 
