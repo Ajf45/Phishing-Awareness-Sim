@@ -25,7 +25,7 @@ Features:
 
 ##  Live Demo
 
-[Click here to view the live site on Netlify](https://https://phishaware-sim.netlify.app/)
+[Click here to view the live site on Netlify](phishaware-sim.netlify.app/)
 
 
 
