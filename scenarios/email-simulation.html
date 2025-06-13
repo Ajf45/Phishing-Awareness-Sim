@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulated Email Attack</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <main>
+    <h2>Simulated Email</h2>
+    <p><strong>From:</strong> IT Support &lt;support@it-secure.com&gt;</p>
+    <p><strong>Subject:</strong> Urgent: Verify Your Account Immediately</p>
+    <p>Hello,</p>
+    <p>We detected unusual activity on your corporate account. Please verify your credentials immediately to avoid suspension.</p>
+    <p><a href="#">Click here to verify</a></p>
+    <p>Thank you,  
+       <br>The Security Team</p>
+
+    <button id="reveal">Reveal Red Flags</button>
+    <ul>
+      <li class="red-flag">⚠️ Suspicious sender domain (not yourcompany.com)</li>
+      <li class="red-flag">⚠️ Urgent language ("Immediately", "suspension")</li>
+      <li class="red-flag">⚠️ Link uses a generic short URL</li>
+    </ul>
+
+    <button onclick="alert('Phishing Reported! ✅')">🚨 Report Phishing</button>
+  </main>
+  <script src="../js/reveal.js"></script>
+</body>
+</html>

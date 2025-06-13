@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PhishAware Simulator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <main>
+        <header>
+            <img src="images/logo.png" alt="Phishing Awareness Logo" class="logo" />
+            <h1>PhishAware Simulator</h1>
+        </header>
+        <p class="intro-text">
+            In this world, beware of phishing attacks. Learn to avoid phishing attempts
+            by exploring real-world scenarios.
+        </p>
+        <nav>
+            <label for="scenarios">Choose a Phishing Scenario:</label>
+            <select id="scenarios" onchange="goToScenario()">
+            <option value="">-- Select a scenario --</option>
+            <option value="scenarios/bank-login.html">🔐 Bank Login Simulation</option>
+            <option value="scenarios/fake-invoice.html">📄 Invoice Scam</option>
+            <option value="scenarios/password-reset.html">🔑 Password Reset</option>
+            <option value="scenarios/social-login.html">🔗 Fake Google Login</option>
+            <option value="scenarios/sms-phishing.html">📱 Smishing SMS</option>
+            <option value="scenarios/chat-simulation.html">💬 Chat Simulation</option>
+            </select>
+        </nav>
+         <div class="quiz-links">
+            <a href="quiz.html"> Take the Phishing Awareness Assessment</a><br>
+            <a href="result.html">View Assessment Result</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 CyberSafe Awareness. All rights reserved.</p>
+    </footer>
+    <script>
+        function goToScenario() {
+            const dropdown = document.getElementById("scenarios");
+            const selected = dropdown.value;
+            if (selected) {
+                window.location.href = selected;
+            }
+        }
+    </script>
+</body>
+</html>

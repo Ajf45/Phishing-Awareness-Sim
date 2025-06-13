@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Awareness Quiz</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .feedback { margin-top: 0.5rem; font-weight: bold; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+  </style>
+</head>
+<body>
+  <main>
+    <h2>Phishing Awareness Assessment</h2>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. What is phishing?</p>
+        <input type="radio" name="q1" value="a"> A way to catch fish<br>
+        <input type="radio" name="q1" value="b"> A cyber attack that tricks users into revealing information<br>
+        <input type="radio" name="q1" value="c"> A video game<br>
+        <p id="q1-feedback" class="feedback"></p>
+      </div>
+
+      <div class="question">
+        <p>2. Which of these is a red flag in an email?</p>
+        <input type="radio" name="q2" value="a"> A personal greeting and logo<br>
+        <input type="radio" name="q2" value="b"> A link to the company's official domain<br>
+        <input type="radio" name="q2" value="c"> An urgent tone asking for immediate action<br>
+        <p id="q2-feedback" class="feedback"></p>
+      </div>
+
+      <div class="question">
+        <p>3. How can you verify a suspicious link?</p>
+        <input type="radio" name="q3" value="a"> Hover over it to see the full URL<br>
+        <input type="radio" name="q3" value="b"> Click immediately<br>
+        <input type="radio" name="q3" value="c"> Ignore all emails<br>
+        <p id="q3-feedback" class="feedback"></p>
+      </div>
+
+      <button type="button" onclick="checkQuiz()">Submit</button>
+    </form>
+  </main>
+  <script>
+    function checkQuiz() {
+      const answers = { q1: 'b', q2: 'c', q3: 'a' };
+      let score = 0;
+
+      Object.keys(answers).forEach(q => {
+        const selected = document.querySelector(`input[name='${q}']:checked`);
+        const feedback = document.getElementById(`${q}-feedback`);
+        if (!selected) {
+          feedback.textContent = "Please select an answer.";
+          feedback.className = "feedback incorrect";
+        } else if (selected.value === answers[q]) {
+          feedback.textContent = "✅ Correct!";
+          feedback.className = "feedback correct";
+          score++;
+        } else {
+          feedback.textContent = "❌ Incorrect.";
+          feedback.className = "feedback incorrect";
+        }
+      });
+
+      // Save result to localStorage
+      localStorage.setItem("quizScore", `${score}/${Object.keys(answers).length}`);
+    }
+  </script>
+</body>
+</html>

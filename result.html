@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Results</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <h2>Assessment Results</h2>
+    <ul>
+      <li>Email Simulation: <span id="emailResult"></span></li>
+      <li>SMS Simulation: <span id="smsResult"></span></li>
+      <li>Chat Simulation: <span id="chatResult"></span></li>
+      <li>Quiz Score: <span id="quizResult"></span></li>
+    </ul>
+  </main>
+  <script>
+    document.getElementById('emailResult').textContent = localStorage.getItem('emailAction') || 'Not Attempted';
+    document.getElementById('smsResult').textContent = localStorage.getItem('smsAction') || 'Not Attempted';
+    document.getElementById('chatResult').textContent = localStorage.getItem('chatAction') || 'Not Attempted';
+    document.getElementById('quizResult').textContent = localStorage.getItem('quizScore') || 'Not Taken';
+  </script>
+</body>
+</html>

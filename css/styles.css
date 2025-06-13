@@ -1,0 +1,136 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f0f2f5, #e0e6ed);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+main {
+  background: white;
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.logo {
+  width: 80px;
+  height: auto;
+}
+h1 {
+  font-size: 2rem;
+  color: #0056b3;
+  margin: 0;
+}
+.intro-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+nav {
+  margin: 2rem 0;
+}
+label {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 400px;
+}
+.quiz-links {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background-color: #0056b3;
+}
+.btn.secondary {
+  background-color: #6c757d;
+}
+.btn.secondary:hover {
+  background-color: #495057;
+}
+footer {
+  text-align: center;
+  margin: 2rem auto;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+/* Scenario styling */
+.red-flag {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #218838;
+}
+
+/* Quiz and Result Pages Styling */
+.quiz-question {
+  text-align: left;
+  margin: 1.5rem 0;
+}
+.quiz-question h3 {
+  margin-bottom: 0.5rem;
+  color: #0056b3;
+}
+.quiz-question label {
+  display: block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+.feedback {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+.correct {
+  color: green;
+}
+.incorrect {
+  color: red;
+}

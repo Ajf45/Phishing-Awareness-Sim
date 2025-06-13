@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smishing Simulation</title>
+  <link rel="stylesheet" href="../css/sms-styles.css" />
+</head>
+<body>
+  <main class="sms-container">
+    <h2>SMS Simulation</h2>
+    
+    <div class="sms-bubble sender">
+      <p>[DELIVERY] Your package is on hold. Please update your address urgently: <a href="#">http://track-update.info</a></p>
+    </div>
+
+    <button id="reveal">Reveal Red Flags</button>
+
+    <ul class="red-flag-list">
+      <li class="red-flag">⚠️ Suspicious link domain (not a known courier service)</li>
+      <li class="red-flag">⚠️ Creates urgency: “update urgently”</li>
+      <li class="red-flag">⚠️ Generic sender name: [DELIVERY]</li>
+      <li class="red-flag">⚠️ No tracking number or personal reference</li>
+    </ul>
+  </main>
+
+  <script>
+    document.getElementById("reveal").addEventListener("click", () => {
+      document.querySelectorAll(".red-flag").forEach(el => el.style.display = "list-item");
+    });
+  </script>
+</body>
+</html>

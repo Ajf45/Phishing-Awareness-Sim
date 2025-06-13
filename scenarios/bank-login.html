@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMN Bank Secure Login</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <main>
+        <h2>DMN Bank - Secure Login</h2>
+        <form>
+            <input type="text" placeholder="Username"><br><br>
+            <input type="password" placeholder="Password"><br><br>
+            <button type="button">Login</button>
+        </form>
+        <button id="reveal">Reveal Red Flags</button>
+        <ul>
+            <li class="red-flag">⚠️ URL is dmn-bank-login.ga (not a legit domain)</li>
+            <li class="red-flag">⚠️ HTTPS padlock is just an image</li>
+            <li class="red-flag">⚠️ Typo: "Your accunt has been blocked"</li>
+            <li class="red-flag">⚠️ Branding is inconsistent with the real site</li>
+        </ul>
+    </main>
+    <script src="../js/reveal.js"></script>
+</body>
+</html>

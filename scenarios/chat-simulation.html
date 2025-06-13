@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Phishing Simulation</title>
+  <link rel="stylesheet" href="../css/chat-styles.css" />
+</head>
+<body>
+  <main class="chat-container">
+    <h2> HR Chat - Simulation </h2>
+
+    <div class="chat-bubble received">
+      <strong>HR Dept:</strong> Hi, this is HR. Due to a payroll issue, please verify your details using this link: <a href="#">bit.ly/hr-verification</a>
+    </div>
+
+    <div class="chat-bubble sent">
+      Okay, I’ll check it right away.
+    </div>
+
+    <button id="reveal">Reveal Red Flags</button>
+
+    <ul class="red-flag-list">
+      <li class="red-flag">⚠️ Link uses URL shortener (bit.ly)</li>
+      <li class="red-flag">⚠️ No official greeting or internal email confirmation</li>
+      <li class="red-flag">⚠️ Unusual request in chat format for sensitive data</li>
+    </ul>
+  </main>
+
+  <script>
+    document.getElementById("reveal").addEventListener("click", () => {
+      document.querySelectorAll(".red-flag").forEach(el => el.style.display = "list-item");
+    });
+  </script>
+</body>
+</html>
