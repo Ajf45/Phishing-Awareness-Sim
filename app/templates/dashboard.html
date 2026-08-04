@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — PhishAware{% endblock %}
+{% block content %}
+
+<h1>Security Awareness Dashboard</h1>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-value">{{ campaigns|length }}</div>
+    <div class="stat-label">Campaigns</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ total_targets }}</div>
+    <div class="stat-label">Roster Size</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ total_events }}</div>
+    <div class="stat-label">Logged Events</div>
+  </div>
+  <div class="stat-card risk-{{ 'high' if org_risk >= 66 else 'medium' if org_risk >= 33 else 'low' }}">
+    <div class="stat-value">{{ org_risk }}</div>
+    <div class="stat-label">Org Human Risk Index</div>
+  </div>
+</div>
+
+<h2>Campaigns</h2>
+{% if campaigns %}
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Targets</th>
+      <th>Reported</th>
+      <th>Risk Index</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in campaigns %}
+    {% set s = summaries[c.id] %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td><span class="badge badge-{{ c.status }}">{{ c.status }}</span></td>
+      <td>{{ s.total_targets }}</td>
+      <td>{{ s.reported_count }}</td>
+      <td><span class="badge risk-{{ s.risk_band }}">{{ s.human_risk_index }}</span></td>
+      <td><a href="{{ url_for('admin.campaign_detail', campaign_id=c.id) }}">View →</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty-state">No campaigns yet. <a href="{{ url_for('admin.new_campaign') }}">Create your first campaign</a>.</p>
+{% endif %}
+
+{% endblock %}

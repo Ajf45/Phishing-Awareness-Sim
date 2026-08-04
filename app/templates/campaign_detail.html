@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}{{ campaign.name }} — PhishAware{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <h1>{{ campaign.name }}</h1>
+    <p class="muted">Pretext: {{ campaign.template.name }} · Technique: {{ campaign.template.technique_id }} · Status: <span class="badge badge-{{ campaign.status }}">{{ campaign.status }}</span></p>
+  </div>
+  <div class="header-actions">
+    {% if campaign.status == 'draft' %}
+    <form method="POST" action="{{ url_for('admin.launch_campaign', campaign_id=campaign.id) }}">
+      <button type="submit">🚀 Launch Simulation</button>
+    </form>
+    {% endif %}
+    <a class="btn-secondary" href="{{ url_for('admin.campaign_report_csv', campaign_id=campaign.id) }}">⬇ Export CSV</a>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-value">{{ summary.total_targets }}</div>
+    <div class="stat-label">Targets Enrolled</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ summary.reported_count }}</div>
+    <div class="stat-label">Reported Suspicious</div>
+  </div>
+  <div class="stat-card risk-{{ summary.risk_band }}">
+    <div class="stat-value">{{ summary.human_risk_index }}</div>
+    <div class="stat-label">Human Risk Index (0–100)</div>
+  </div>
+</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>Interaction Funnel</h3>
+    <canvas id="funnelChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Events by MITRE ATT&amp;CK Technique</h3>
+    <canvas id="mitreChart"></canvas>
+  </div>
+  <div class="chart-card full-width">
+    <h3>Event Timeline</h3>
+    <canvas id="timelineChart"></canvas>
+  </div>
+</div>
+
+<h2>Department Breakdown</h2>
+<table class="data-table">
+  <thead><tr><th>Department</th><th>Targets</th><th>Avg Risk Score</th></tr></thead>
+  <tbody>
+    {% for d in summary.department_breakdown %}
+    <tr>
+      <td>{{ d.department }}</td>
+      <td>{{ d.target_count }}</td>
+      <td><span class="badge risk-{{ 'high' if d.avg_score >= 66 else 'medium' if d.avg_score >= 33 else 'low' }}">{{ d.avg_score }}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Per-Target Detail</h2>
+<table class="data-table">
+  <thead><tr><th>Target</th><th>Stage Reached</th><th>Events</th><th>Risk Score</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.target.full_name }} <span class="muted">({{ r.target.email }})</span></td>
+      <td><span class="badge badge-stage-{{ r.stage }}">{{ r.stage }}</span></td>
+      <td>{{ r.event_count }}</td>
+      <td><span class="badge risk-{{ 'high' if r.score >= 66 else 'medium' if r.score >= 33 else 'low' }}">{{ r.score }}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>MITRE ATT&amp;CK Technique Reference</h2>
+<table class="data-table">
+  <thead><tr><th>ID</th><th>Name</th><th>Tactic</th></tr></thead>
+  <tbody>
+    {% for tid, meta in technique_library.items() %}
+    <tr><td>{{ tid }}</td><td>{{ meta.name }}</td><td>{{ meta.tactic }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+const campaignId = {{ campaign.id }};
+
+async function loadCharts() {
+  const [funnel, mitre, timeline] = await Promise.all([
+    fetch(`/api/campaigns/${campaignId}/funnel`).then(r => r.json()),
+    fetch(`/api/campaigns/${campaignId}/mitre`).then(r => r.json()),
+    fetch(`/api/campaigns/${campaignId}/timeline`).then(r => r.json()),
+  ]);
+
+  new Chart(document.getElementById('funnelChart'), {
+    type: 'bar',
+    data: {
+      labels: funnel.labels,
+      datasets: [{ label: 'Targets', data: funnel.values, backgroundColor: '#4f7cff' }]
+    },
+    options: { plugins: { legend: { display: false } } }
+  });
+
+  new Chart(document.getElementById('mitreChart'), {
+    type: 'doughnut',
+    data: {
+      labels: mitre.labels,
+      datasets: [{ data: mitre.values, backgroundColor: ['#4f7cff','#ff6b6b','#ffd166','#06d6a0','#a78bfa','#f472b6'] }]
+    }
+  });
+
+  const colors = { sent: '#94a3b8', opened: '#4f7cff', clicked: '#ffd166', submitted: '#ff6b6b', reported: '#06d6a0' };
+  new Chart(document.getElementById('timelineChart'), {
+    type: 'line',
+    data: {
+      labels: timeline.days,
+      datasets: Object.keys(timeline.series).map(k => ({
+        label: k,
+        data: timeline.series[k],
+        borderColor: colors[k],
+        backgroundColor: colors[k],
+        tension: 0.3,
+      }))
+    }
+  });
+}
+
+loadCharts();
+</script>
+
+{% endblock %}

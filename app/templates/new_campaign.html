@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}New Campaign — PhishAware{% endblock %}
+{% block content %}
+
+<h1>New Campaign</h1>
+
+<form method="POST" class="form-card">
+  <label>Campaign name</label>
+  <input type="text" name="name" placeholder="e.g. Q3 2026 - IT Support Pretext" required>
+
+  <label>Phishing template (pretext)</label>
+  <select name="template_id" required>
+    {% for t in templates %}
+    <option value="{{ t.id }}">{{ t.name }} — {{ t.technique_id }} ({{ t.difficulty }})</option>
+    {% endfor %}
+  </select>
+
+  <label>Targets</label>
+  <div class="target-picker">
+    {% for tg in targets %}
+    <label class="checkbox-row">
+      <input type="checkbox" name="target_ids" value="{{ tg.id }}">
+      {{ tg.full_name }} — {{ tg.email }}
+      <span class="muted">{{ tg.department.name if tg.department else '' }}</span>
+    </label>
+    {% endfor %}
+  </div>
+
+  <button type="submit">Create Campaign</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Login — PhishAware{% endblock %}
+{% block content %}
+<div class="login-wrap">
+  <div class="login-card">
+    <h1>🛡️ PhishAware</h1>
+    <p class="subtitle">Security Awareness Simulation Platform</p>
+    <form method="POST">
+      <label>Username</label>
+      <input type="text" name="username" required autofocus>
+      <label>Password</label>
+      <input type="password" name="password" required>
+      <button type="submit">Sign in</button>
+    </form>
+    <p class="hint">Default demo login: admin / ChangeMe123! (set ADMIN_USERNAME / ADMIN_PASSWORD env vars to change)</p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{
+  "_comment": "Example least-privilege IAM policy for the PhishAware app role. Only needed if MAIL_MODE=ses and/or SHIP_TO_CLOUDWATCH=true. The default local/simulate configuration needs no AWS permissions at all. Scope Resource ARNs down to your account/region/log-group before using this for anything real.",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SendSimulatedPhishingEmailsViaSES",
+      "Effect": "Allow",
+      "Action": [
+        "ses:SendEmail",
+        "ses:SendRawEmail"
+      ],
+      "Resource": "arn:aws:ses:us-east-1:ACCOUNT_ID:identity/*",
+      "Condition": {
+        "StringEquals": {
+          "ses:FromAddress": "security-awareness@yourcompany.com"
+        }
+      }
+    },
+    {
+      "Sid": "WriteCampaignEventLogsToCloudWatch",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:ACCOUNT_ID:log-group:/phishaware/*"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+:root {
+  --bg: #0f1420;
+  --panel: #161d2e;
+  --panel-2: #1c2540;
+  --border: #263049;
+  --text: #e6ebf5;
+  --muted: #8a94ab;
+  --accent: #4f7cff;
+  --danger: #ff6b6b;
+  --warn: #ffd166;
+  --ok: #06d6a0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.brand { font-weight: 700; font-size: 18px; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+}
+.nav-links a:hover { color: var(--text); }
+
+h1 { font-size: 26px; margin-bottom: 4px; }
+h2 { font-size: 18px; margin-top: 32px; color: var(--text); }
+.muted { color: var(--muted); font-size: 13px; }
+
+.flash {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.flash-success { background: rgba(6,214,160,0.15); border: 1px solid var(--ok); }
+.flash-error { background: rgba(255,107,107,0.15); border: 1px solid var(--danger); }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.stat-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+}
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-card.risk-high { border-color: var(--danger); }
+.stat-card.risk-medium { border-color: var(--warn); }
+.stat-card.risk-low { border-color: var(--ok); }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: var(--panel);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.data-table th, .data-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.data-table th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+.data-table a { color: var(--accent); text-decoration: none; }
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge-draft { background: rgba(148,163,184,0.2); color: #cbd5e1; }
+.badge-sent { background: rgba(79,124,255,0.2); color: #93b1ff; }
+.badge-completed { background: rgba(6,214,160,0.2); color: var(--ok); }
+.risk-low { background: rgba(6,214,160,0.2); color: var(--ok); }
+.risk-medium { background: rgba(255,209,102,0.2); color: var(--warn); }
+.risk-high { background: rgba(255,107,107,0.2); color: var(--danger); }
+.badge-stage-not_sent { background: rgba(148,163,184,0.2); color: #cbd5e1; }
+.badge-stage-sent { background: rgba(148,163,184,0.2); color: #cbd5e1; }
+.badge-stage-opened { background: rgba(79,124,255,0.2); color: #93b1ff; }
+.badge-stage-clicked { background: rgba(255,209,102,0.2); color: var(--warn); }
+.badge-stage-submitted { background: rgba(255,107,107,0.2); color: var(--danger); }
+.badge-stage-reported { background: rgba(6,214,160,0.2); color: var(--ok); }
+
+.empty-state { color: var(--muted); margin-top: 20px; }
+
+.form-card, .login-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 520px;
+}
+label { display: block; margin: 14px 0 6px; font-size: 13px; color: var(--muted); }
+input[type=text], input[type=password], select {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+}
+button, .btn-secondary {
+  margin-top: 20px;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-secondary { background: var(--panel-2); border: 1px solid var(--border); }
+
+.target-picker {
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 6px;
+}
+.checkbox-row { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 4px 0; }
+.checkbox-row input { width: auto; }
+
+.login-wrap { display: flex; justify-content: center; padding-top: 60px; }
+.login-card { text-align: center; }
+.login-card .subtitle { color: var(--muted); margin-bottom: 20px; }
+.login-card .hint { margin-top: 18px; font-size: 12px; color: var(--muted); }
+
+.page-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+.header-actions { display: flex; gap: 10px; }
+.header-actions form { display: inline; }
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.chart-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+.chart-card.full-width { grid-column: 1 / -1; }
+.chart-card h3 { margin-top: 0; font-size: 14px; color: var(--muted); }
+
+/* --- Simulated target-facing pages (landing/educate/reported) --- */
+.landing-body {
+  background: #f3f4f6;
+  color: #111827;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.fake-login-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 40px;
+  width: 340px;
+}
+.fake-logo { font-weight: 700; font-size: 20px; margin-bottom: 4px; }
+.fake-subtitle { color: #6b7280; font-size: 13px; margin-bottom: 20px; }
+.fake-login-card label { color: #374151; font-size: 13px; }
+.fake-login-card input {
+  width: 100%; padding: 10px; margin-top: 4px; margin-bottom: 14px;
+  border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;
+}
+.fake-login-card button {
+  width: 100%; padding: 11px; background: #2563eb; color: white;
+  border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+
+.educate-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 40px;
+  max-width: 480px;
+}
+.educate-icon { font-size: 36px; }
+.reported-card { border-top: 4px solid #06d6a0; }

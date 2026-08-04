@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thanks for reporting</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="landing-body">
+  <div class="educate-card reported-card">
+    <div class="educate-icon">✅</div>
+    <h1>Nice catch!</h1>
+    <p>This was a simulated phishing test from <strong>{{ org_name }}</strong> Security, and you correctly
+    identified and reported it. That's exactly the behavior we want — thank you for helping protect the
+    organization.</p>
+  </div>
+</body>
+</html>

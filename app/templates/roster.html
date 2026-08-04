@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Roster — PhishAware{% endblock %}
+{% block content %}
+
+<h1>Target Roster</h1>
+<p class="muted">Simulated internal roster used for campaign enrollment. In a real deployment this is sourced from an authorized internal directory export — never from scraped or purchased lists.</p>
+
+<table class="data-table">
+  <thead><tr><th>Name</th><th>Email</th><th>Department</th><th>Position</th></tr></thead>
+  <tbody>
+    {% for t in targets %}
+    <tr>
+      <td>{{ t.full_name }}</td>
+      <td>{{ t.email }}</td>
+      <td>{{ t.department.name if t.department else '' }}</td>
+      <td>{{ t.position or '' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

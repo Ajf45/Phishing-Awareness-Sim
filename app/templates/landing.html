@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ org_name }} — Sign In</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="landing-body">
+  <div class="fake-login-card">
+    <div class="fake-logo">{{ org_name }}</div>
+    <p class="fake-subtitle">Please verify your account to continue</p>
+    <form method="POST" action="{{ url_for('tracking.submit', token=token) }}" autocomplete="off">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="you@company.com">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="••••••••">
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+  <!--
+    Training platform note: this page never reads or stores the values
+    submitted above — see app/routes/tracking.py `submit()`. Only the
+    fact that a submission occurred is logged, for scoring purposes.
+  -->
+</body>
+</html>

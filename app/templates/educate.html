@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>This was a phishing simulation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="landing-body">
+  <div class="educate-card">
+    <div class="educate-icon">🎣</div>
+    <h1>This was a simulated phishing test</h1>
+    <p>You just entered credentials on a page created by <strong>{{ org_name }}</strong> Security to test phishing
+    awareness. No password was recorded — nothing you typed was saved.</p>
+    <h2>What gave it away?</h2>
+    <ul>
+      <li>The sender created urgency ("verify your account to continue")</li>
+      <li>The link led to a login page outside the normal single sign-on flow</li>
+      <li>The domain didn't match a real company system</li>
+    </ul>
+    <p>Next time, use the <strong>Report Phishing</strong> button in your mail client instead of clicking through.
+    Thanks for helping keep {{ org_name }} secure.</p>
+  </div>
+</body>
+</html>
